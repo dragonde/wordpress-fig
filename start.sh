@@ -12,4 +12,4 @@
   mysql -uroot -p$MYSQL_PASSWORD -h db -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
 
 # start all the services
-/usr/local/bin/supervisord -n
+/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
