@@ -12,7 +12,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # Basic Requirements
-RUN apt-get -y install nginx php5-fpm php5-mysql php-apc pwgen python-setuptools curl git unzip
+RUN apt-get -y install nginx php5-fpm php5-mysql php-apc pwgen python-setuptools mysql-client
 
 # Wordpress Requirements
 RUN apt-get -y install php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell php5-recode php5-sqlite php5-tidy php5-xmlrpc php5-xsl
@@ -39,13 +39,7 @@ RUN /usr/bin/easy_install supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
 # Install Wordpress
-ADD http://wordpress.org/latest.tar.gz /usr/share/nginx/latest.tar.gz
-RUN cd /usr/share/nginx/ && tar xvf latest.tar.gz && rm latest.tar.gz
-RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress
-ADD ./wp-config.php /usr/share/nginx/wordpress/
-RUN rm -rf /usr/share/nginx/www
-RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
-RUN chown -R www-data:www-data /usr/share/nginx/www
+VOLUME  /data
 
 # Wordpress Initialization and Startup Script
 ADD ./start.sh /start.sh

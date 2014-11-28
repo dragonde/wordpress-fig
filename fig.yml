@@ -4,11 +4,12 @@ web:
     - "80:80"
   links:
     - db
+  volumes:
+    - wordpress:/data
 
 db:
   image: mysql
   environment:
-    MYSQL_DATABASE: wordpress
     MYSQL_ROOT_PASSWORD: 234567
 
 

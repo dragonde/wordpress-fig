@@ -1,0 +1,6 @@
+RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress
+ADD ./wp-config.php /usr/share/nginx/wordpress/
+RUN rm -rf /usr/share/nginx/www
+RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
+RUN chown -R www-data:www-data /usr/share/nginx/www
+
