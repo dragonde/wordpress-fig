@@ -11,5 +11,5 @@ db:
   image: mysql
   environment:
     MYSQL_ROOT_PASSWORD: 234567
-
+    MYSQL_MYSQL_DATABASE: wordpress
 
