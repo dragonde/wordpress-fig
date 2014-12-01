@@ -1,5 +1,5 @@
 web:
-  build: .
+  build: web-server 
   ports: 
     - "80:80"
   links:
@@ -8,7 +8,7 @@ web:
     - wordpress:/data
 
 db:
-  build: mysql
+  image: mysql
   environment:
     MYSQL_ROOT_PASSWORD: 234567
 
