@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.10
 MAINTAINER Alberto Bañón <dragonde.es@gmail.com>
 
 # Keep upstart from complaining
