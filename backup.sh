@@ -1,20 +1,14 @@
 #!/bin/bash
 
 fecha=$(date +%y%m%d-%H%M)
-file='/tmp/wordpress.sql'
+segment='gs://vux'
 
-docker exec wordpressfig_db_1 mysqldump -p234567 wordpress > $file  
-tar zcvf /tmp/wordpress.tgz wordpress
 
-if [ -f $file ];
-then
-  gsutil cp $file gs://vux/wordpress-$fecha.sql
-  rm -f $file
-fi
+docker exec -i wordpressfig_db_1 sh -c 'mysqldump -p$MYSQL_ROOT_PASSWORD wordpress' > wordpress.sql  
 
-if [ -f /tmp/wordpress.tgz ];
-then
-  gsutil cp /tmp/wordpress.tgz  gs://vux/wordpress-$fecha.tgz
-  rm -f /tmp/wordpress.tgz
-fi
+tar zcvf wordpress.tgz fig.yml wordpress.sql wordpress 
+
+gsutil cp wordpress.tgz $segment/wordpress-$fecha.tgz
+
+rm -f wordpress.tgz wordpress.sql
 

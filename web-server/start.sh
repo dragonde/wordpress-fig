@@ -1,15 +1,14 @@
 #!/bin/bash
-  WORDPRESS_DB="wordpress"
-  MYSQL_PASSWORD="234567"
-  WORDPRESS_PASSWORD=`pwgen -c -n -1 12`
 
-  chown -R www-data:www-data /data
+  chown -R www-data:www-data /www
 
-  sleep 10;
+  sleep 5;
 
-  mysqladmin -u root --password=$MYSQL_PASSWORD -h db
-  mysql -uroot -p$MYSQL_PASSWORD -h db -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-  mysql -uroot -p$MYSQL_PASSWORD -h db -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
+  mysql -uroot -p$DB_ENV_MYSQL_ROOT_PASSWORD -h db -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$DB_ENV_MYSQL_ROOT_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+
+  mysql -uroot -p$DB_ENV_MYSQL_ROOT_PASSWORD -h db -e "CREATE DATABASE wordpress;"
+  
+  mysql -uroot -p$DB_ENV_MYSQL_ROOT_PASSWORD -h db -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' IDENTIFIED BY '$DB_ENV_WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
 
 # start all the services
 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf

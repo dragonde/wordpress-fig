@@ -1,0 +1,16 @@
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: mymysqlpassword
+    WORDPRESS_PASSWORD: mywordpresspassword
+
+web:
+  build: web-server
+  ports:
+    - "80:80"
+  links:
+    - db
+  volumes:
+    - wordpress:/www
+
+

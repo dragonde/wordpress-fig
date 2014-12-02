@@ -37,7 +37,7 @@ ADD ./nginx-site.conf /etc/nginx/sites-available/default
 ADD ./supervisord.conf /etc/supervisor/supervisord.conf
 
 # Install Wordpress
-VOLUME  /data
+VOLUME  /www
 
 # Wordpress Initialization and Startup Script
 ADD ./start.sh /start.sh
