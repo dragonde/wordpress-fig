@@ -5,7 +5,9 @@ db:
     WORDPRESS_PASSWORD: mywordpresspassword
 
 web:
-  build: web-server
+
+# build: web-server
+  image: dragonde/wordpress-webserver
   ports:
     - "80:80"
   links:
