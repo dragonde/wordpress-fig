@@ -2,7 +2,7 @@
 
   chown -R www-data:www-data /www
 
-  sleep 5;
+  sleep 10;
 
   mysql -uroot -p$DB_ENV_MYSQL_ROOT_PASSWORD -h db -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$DB_ENV_MYSQL_ROOT_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
