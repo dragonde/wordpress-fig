@@ -11,6 +11,10 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get -y upgrade
 
+# Timezone
+
+RUN echo "Europe/Madrid" > /etc/timezone; dpkg-reconfigure tzdata
+
 # Basic Requirements
 RUN apt-get -y install nginx php5-fpm php5-mysql php-apc pwgen mysql-client supervisor
 
@@ -37,7 +41,7 @@ ADD ./nginx-site.conf /etc/nginx/sites-available/default
 # Supervisor Config
 ADD ./supervisord.conf /etc/supervisor/supervisord.conf
 
-# Install Wordpress
+# Install Wordpress in wwww
 VOLUME  /www
 
 # Wordpress Initialization and Startup Script
