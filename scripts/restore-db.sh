@@ -1,9 +1,11 @@
 #!/bin/bash
 
-if [ -f wordpress.sql ] ;
+dbinit='dbinit/wordpress.sql'
+
+if [ -f $dbinit ] ;
 then
-  docker exec -i wordpressfig_db_1 sh -c 'mysql -uroot -p$MYSQL_ROOT_PASSWORD wordpress' < wordpress.sql
+  docker exec -i wordpressfig_db_1 sh -c 'mysql -uroot -p$MYSQL_ROOT_PASSWORD wordpress' < $dbinit
 else
-  echo Falta wordpress.sql
+  echo $dbinit
 fi
 

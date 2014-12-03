@@ -41,10 +41,17 @@ ADD ./nginx-site.conf /etc/nginx/sites-available/default
 # Supervisor Config
 ADD ./supervisord.conf /etc/supervisor/supervisord.conf
 
-# Install Wordpress in wwww
+# Root Directory www
 VOLUME  /www
 
-# Wordpress Initialization and Startup Script
+# Backup Directory 
+VOLUME /dbinit
+
+# Initialization and Startup Script
+
+ADD ./init-db.sh /init-db.sh
+RUN chmod 755 /init-db.sh
+
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
 

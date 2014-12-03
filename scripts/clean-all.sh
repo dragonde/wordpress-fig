@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rm -rf wordpress
-rm fig.yml
 rm wordpress-*
-rm wordpress.sql
+rm dbinit/*
+
+perl -pi -e "s/^(\s*MYSQL_ROOT_PASSWORD:).*$/\1 mypassword/" fig.yml
+perl -pi -e "s/^(\s*WORDPRESS_PASSWORD:).*$/\1 mypassword/" fig.yml

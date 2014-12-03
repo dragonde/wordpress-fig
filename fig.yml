@@ -1,0 +1,17 @@
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: mypassword
+
+web:
+  build: webserver
+  ports:
+    - "80:80"
+  links:
+    - db
+  volumes:
+    - dbinit:/dbinit
+    - wordpress:/www
+  environment:
+    WORDPRESS_PASSWORD: mypassword
+

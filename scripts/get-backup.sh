@@ -8,7 +8,7 @@ echo Backup:
 echo $ultimo_bk
 
 gsutil cp $ultimo_bk .
-gsutil cp $segmento/*.im.gz .
+#gsutil cp $segmento/*.im.gz .
 
 # cargamos las imagenes
-find -name "*.im.gz" -exec docker load -i={} \;
+#find -name "*.im.gz" -exec docker load -i={} \;

@@ -1,5 +1,7 @@
 #!/bin/bash
 
-tar zxvf wordpress-*.tgz 
+# descargamos wordpress y dbinit/wordpress.sql
 
+tar zxvf wordpress-*.tgz 
+rm wordpress-*.tgz
 
