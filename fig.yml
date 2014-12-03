@@ -10,8 +10,8 @@ web:
   links:
     - db
   volumes:
-    - dbinit:/dbinit
-    - wordpress:/www
+    - /root/wordpress-fig/dbinit:/dbinit
+    - /root/wordpress-fig/wordpress:/www
   environment:
     WORDPRESS_PASSWORD: mypassword
 
