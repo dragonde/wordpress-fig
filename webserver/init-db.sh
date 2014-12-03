@@ -20,4 +20,6 @@ if [ -f $dbinit_file ];
 then
   mysql -uwordpress -p$WORDPRESS_PASSWORD -h db wordpress < $dbinit_file
   echo -e "\e[31mRestaurando Copia en BBDD: \e[36m $dbinit_file"
+  ### Eliminar para que si hay reinicio no recarge y planche cambios
+  rm -f $dbinit_file
 fi
