@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mysql_pw=$(pwgen -c -n -1 32)
-wordpress_pw=$(pwgen -c -n -1 32)
+mysql_pw=$(openssl rand -base64 32 | head -c 40 | tr '/+' '01')
+wordpress_pw=$(openssl rand -base64 32 | head -c 40 | tr '/+' '01')
 cwd=$(pwd)
 
 
