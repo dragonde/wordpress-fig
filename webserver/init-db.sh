@@ -5,8 +5,12 @@ dbinit_file='/dbinit/wordpress.sql'
 ### exportar para start.sh
 
 ### Ojo, sed -r, compatibilidad perl
-
+### host puede ser db, db_1 wordpressfig_db_1 ..-
 export DBHOST=$(env | grep PORT_3306_TCP_ADDR | tail -n 1 | sed -re "s/^.+=//")
+
+#hace como no sabemos el hostname, debemos extraer la password en caliente
+export DBPASSWORD=$(env | grep MYSQL_ROOT_PASSWORD | sed -re "s/^.+=//")
+
 
 echo -e "\e[32mEsperando a BBDD en \e[35m$DBHOST"
 
@@ -18,9 +22,9 @@ sleep 1;
 
 echo -e "\e[32mCreando Tabla \e[34mwordpress\e[32m en BBDD"
 
-  mysql -uroot -p$DB_ENV_MYSQL_ROOT_PASSWORD -h $DBHOST -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$DB_ENV_MYSQL_ROOT_PASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+  mysql -uroot -p$DBPASSWORD -h $DBHOST -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$DBPASSWORD' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
-  mysql -uroot -p$DB_ENV_MYSQL_ROOT_PASSWORD -h $DBHOST -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
+  mysql -uroot -p$DBPASSWORD -h $DBHOST -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
 
 if [ -f $dbinit_file ];
 then
