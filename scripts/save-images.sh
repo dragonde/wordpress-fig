@@ -31,8 +31,8 @@ foreach my $imagen (@imagenes) {
      ### nombre de la forma dk.141204-1103.nginx-wordpress"
      my $shortname="dk.".$datestring.".".$namepartido[1];
      print "\e[0mSalvando Imagen: \e[33m$shortname\e[0m\n";
-      `docker save -o="$shortname" $id`;
-      `gzip -7f $shortname`;
+      `docker save -o="$shortname" $name`;
+      `gzip -f $shortname`;
       `gsutil cp $shortname.gz $segment`;
       unlink ("$shortname.gz");  
   }

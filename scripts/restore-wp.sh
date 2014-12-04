@@ -2,6 +2,6 @@
 
 # descargamos wordpress y dbinit/wordpress.sql
 
-tar zxvf wordpress-*.tgz 
-rm wordpress-*.tgz
+tar zxvf wp.*.tgz 
+rm wp.*.tgz
 

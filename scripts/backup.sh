@@ -8,7 +8,7 @@ docker exec -i wordpressfig_db_1 sh -c 'mysqldump -p$MYSQL_ROOT_PASSWORD wordpre
 
 tar zcvf wordpress.tgz fig dbinit/wordpress.sql wordpress 
 
-gsutil cp wordpress.tgz $segment/wordpress-$fecha.tgz
+gsutil cp wordpress.tgz $segment/wp.$fecha.tgz
 
 rm -f wordpress.tgz 
 
