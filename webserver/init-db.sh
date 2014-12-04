@@ -9,10 +9,11 @@ dbinit_file='/dbinit/wordpress.sql'
 export DBHOST=$(env | grep PORT_3306_TCP_ADDR | tail -n 1 | sed -re "s/^.+=//")
 
 #hace como no sabemos el hostname, debemos extraer la password en caliente
-export DBPASSWORD=$(env | grep MYSQL_ROOT_PASSWORD | sed -re "s/^.+=//")
+export DBPASSWORD=$(env | grep MYSQL_ROOT_PASSWORD | tail -n -1 | sed -re "s/^.+=//")
 
 
 echo -e "\e[32mEsperando a BBDD en \e[35m$DBHOST"
+echo -e "\e[32mPassword: \e[35m$DBPASSWORD"
 
 ### Esperamos a que la BBDD se levante
 
