@@ -1,8 +1,9 @@
 #!/bin/bash
 
+### Freshhhh copy of WordPress con NGINX Helper
+
+
   WORDPRESS_DB="wordpress"
-  MYSQL_PASSWORD=`pwgen -c -n -1 12`
-  WORDPRESS_PASSWORD=`pwgen -c -n -1 12`
 
 # solo si no existe wordpress
 
@@ -15,7 +16,7 @@ then
  
   sed -e "s/database_name_here/$WORDPRESS_DB/
   s/username_here/$WORDPRESS_DB/
-  s/password_here/$WORDPRESS_PASSWORD/
+  s/password_here/mypassword/
   s/localhost/db:3306/
   /'AUTH_KEY'/s/put your unique phrase here/`pwgen -c -n -1 65`/
   /'SECURE_AUTH_KEY'/s/put your unique phrase here/`pwgen -c -n -1 65`/
@@ -46,9 +47,6 @@ if ( count( \$plugins ) === 0 ) {
 }
 ENDL
 
-### ponemos la contaseña a fig.yml
-
-sed -e "s/mymysqlpassword/$MYSQL_PASSWORD/
-        s/mywordpresspassword/$WORDPRESS_PASSWORD/" fig-template.yml > fig.yml
-
+else
+  echo "WordPress EXISTE!!! No se puede Inicializar"
 fi

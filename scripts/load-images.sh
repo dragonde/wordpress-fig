@@ -2,11 +2,16 @@
 
 # Cargamos las imagenes docker
 
-find -name "dk.*.*.gz" -exec echo -e "Restoring Docker Image: \e[32m{}\e[0m" \;
+function cargar_imagen {
+  echo -e "Restoring Docker Image: \e[32m$1\e[0m"
+  docker load -i=$1
+  rm -f $1
+}
 
-find -name "dk.*.*.gz" -exec docker load -i={} \;
+export -f cargar_imagen 
 
-find -name "dk.*.*.gz" -exec rm -f {} \;
+find -name "dk.*.*.gz" -exec bash -c 'cargar_imagen "$0"' {} \; 
+
 
 # Imprimir imagenes
 
