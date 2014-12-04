@@ -1,0 +1,5 @@
+apt-get install ruby
+
+gem fig2coreos
+
+fig2coreos wordpress fig.yml coreos
