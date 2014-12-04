@@ -4,7 +4,7 @@ db:
     MYSQL_ROOT_PASSWORD: mypassword
 
 web:
-  build: webserver
+  image: dragonde/nginx-wordpress
   ports:
     - "80:80"
   links:
