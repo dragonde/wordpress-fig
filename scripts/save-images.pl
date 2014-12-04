@@ -5,9 +5,9 @@ use POSIX qw(strftime);
 
 
 # Definición de Constantes
-# Nombre de Cabecera => dragonde
+# Nombre de Cabecera, a buscar dragonde o mysql 
 
-my $headname='dragonde';
+my $headname='dragonde|mysql';
 my $segment='gs://vux';
 
 
@@ -27,9 +27,11 @@ foreach my $imagen (@imagenes) {
      my $name=$stringpartido[0];
      my $id=$stringpartido[2];
      print "Encontrado: \e[36m$name\e[0m, con ID \e[31m$id\n";
+     # Si el nombre es dragonde/... se quita el dragonde
      my @namepartido=split(/\//,$name);
+     my $nombrecorto=defined($namepartido[1])?$namepartido[1]:$name; 
      ### nombre de la forma dk.141204-1103.nginx-wordpress"
-     my $shortname="dk.".$datestring.".".$namepartido[1];
+     my $shortname="dk.".$nombrecorto.".".$datestring;
      print "\e[0mSalvando Imagen: \e[33m$shortname\e[0m\n";
       `docker save -o="$shortname" $name`;
       `gzip -f $shortname`;
